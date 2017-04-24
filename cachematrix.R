@@ -1,15 +1,25 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Functions to create a matrix and cache its inverse.
 
-## Write a short comment describing this function
+## This function creates a global object for a given square matrix and its inverse.
 
-makeCacheMatrix <- function(x = matrix()) {
-
+makecachematrix <- function(x){
+  cachematrix <<- x
+  cachematrixinverse <<- solve(x)
+  invisible(x)
 }
 
 
-## Write a short comment describing this function
+## This function takes a previously defined square matrix, and calculates its inverse
+## if not previously calculated and cached.
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cachesolve <- function(x = cachematrix){
+  if(exists("cachematrixinverse") == TRUE){
+    message("Getting cached data.")
+    cachematrixinverse
+  }
+  else{
+    message("Calculating matrix inverse.")
+    cachematrixinverse <<- solve(x)
+    cachematrixinverse
+  }
 }
